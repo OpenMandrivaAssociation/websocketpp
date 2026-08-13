@@ -1,7 +1,7 @@
 Name:		websocketpp
 Summary:	C++ WebSocket Protocol Library
 Version:	0.8.2
-Release:	1
+Release:	2
 Group:	 	Development/Other
 License:	BSD
 Url:    	https://www.zaphoyd.com/websocketpp
