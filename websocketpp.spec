@@ -1,13 +1,15 @@
 Name:		websocketpp
 Summary:	C++ WebSocket Protocol Library
 Version:	0.8.2
-Release:	2
+Release:	3
 Group:	 	Development/Other
 License:	BSD
 Url:    	https://www.zaphoyd.com/websocketpp
 Source0:	https://github.com/zaphoyd/websocketpp/archive/%{version}/%{name}-%{version}.tar.gz
 # (upsteram) https://github.com/zaphoyd/websocketpp/pull/888
 Patch0:		websocketpp-0.8.2-cmake.patch
+# Boost.Asio 1.87+ removed io_service / io_service::work
+Patch1:		websocketpp-0.8.2-boost-asio-1.92.patch
 
 BuildRequires:	cmake
 BuildRequires:	ninja

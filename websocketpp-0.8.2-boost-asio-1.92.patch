@@ -1,0 +1,23 @@
+--- a/websocketpp/common/asio.hpp
++++ b/websocketpp/common/asio.hpp
+@@ -93,6 +93,20 @@ namespace lib {
+ #else
+     namespace asio {
+         using namespace boost::asio;
++
++        // Boost.Asio 1.87 removed io_service and io_service::work.
++#if BOOST_VERSION >= 108700
++        using io_service = boost::asio::io_context;
++        class work {
++        public:
++            explicit work(io_context & ctx)
++                : m_guard(boost::asio::make_work_guard(ctx))
++            {
++            }
++        private:
++            boost::asio::executor_work_guard<io_context::executor_type> m_guard;
++        };
++#endif
+         
+         // See note above about boost <1.49 compatibility
+         #if (BOOST_VERSION/100000) == 1 && ((BOOST_VERSION/100)%1000) > 48
