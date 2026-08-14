@@ -1,7 +1,7 @@
 Name:		websocketpp
 Summary:	C++ WebSocket Protocol Library
 Version:	0.8.2
-Release:	3
+Release:	4
 Group:	 	Development/Other
 License:	BSD
 Url:    	https://www.zaphoyd.com/websocketpp
@@ -51,6 +51,9 @@ Library.
 
 %prep
 %autosetup -p1
+# Boost.Asio 1.87+ renamed socket_base::max_connections
+sed -i 's/socket_base::max_connections/socket_base::max_listen_connections/g' \
+	websocketpp/transport/asio/endpoint.hpp
 
 %build
 %cmake \
